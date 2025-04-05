@@ -1,3 +1,3 @@
 # Tagesgeldzinsrechner
 
-Ein kleines Konsolenprogramm um den Kontoverlau eines Tagesgeldkontos zu berechnen.
+Ein kleines Konsolenprogramm um den Kontoverlauf eines Tagesgeldkontos zu berechnen.

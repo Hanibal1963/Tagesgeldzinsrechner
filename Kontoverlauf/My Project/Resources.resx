@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,87 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Frage01" xml:space="preserve">
+    <value>Wie hoch ist Dein Startguthaben?</value>
+  </data>
+  <data name="Frage02" xml:space="preserve">
+    <value>Wieviel möchtest Du monatlich investieren?</value>
+  </data>
+  <data name="Frage03" xml:space="preserve">
+    <value>Für wieviele Monate soll der Kontoverlauf berechnet werden?</value>
+  </data>
+  <data name="Frage04" xml:space="preserve">
+    <value>Wie hoch ist der jährliche Zinssatz?</value>
+  </data>
+  <data name="Frage05" xml:space="preserve">
+    <value>In welchem Turnus erfolgt die Zinszahlung?</value>
+  </data>
+  <data name="Frage05_Hinweis" xml:space="preserve">
+    <value>1 für monatlich,2 für virteljährlich und 3 für jährlich.</value>
+  </data>
+  <data name="Frage06" xml:space="preserve">
+    <value>Sind Diese Angaben richtig?</value>
+  </data>
+  <data name="Ja_Nein_Hinweis01" xml:space="preserve">
+    <value>[J]a oder [N]ein.</value>
+  </data>
+  <data name="ja_Nein_Hinweis02" xml:space="preserve">
+    <value>Ungültige Eingabe. Bitte drücke [J] für ja oder [N] für nein.</value>
+  </data>
+  <data name="Meldung01" xml:space="preserve">
+    <value>Hier ist die Berechnung des Kontoverlaufs nach Deinen Angaben:</value>
+  </data>
+  <data name="Meldung02" xml:space="preserve">
+    <value>Ungültige Eingabe. Bitte gib eine Zahl ein:</value>
+  </data>
+  <data name="Meldung03" xml:space="preserve">
+    <value>Ungültige Eingabe. Bitte gib nur 1, 2 oder 3 ein:</value>
+  </data>
+  <data name="Meldung04" xml:space="preserve">
+    <value>Zusammenfassung der von Dir eingegebenen Daten:</value>
+  </data>
+  <data name="Meldung05" xml:space="preserve">
+    <value>Dein Anfangskontostand:</value>
+  </data>
+  <data name="Meldung06" xml:space="preserve">
+    <value>Virteljährliche Zinszahlung.</value>
+  </data>
+  <data name="Meldung07" xml:space="preserve">
+    <value>Monatliche Zinszahlung.</value>
+  </data>
+  <data name="Meldung08" xml:space="preserve">
+    <value>Dein Anfangskontostand:</value>
+  </data>
+  <data name="Meldung09" xml:space="preserve">
+    <value>Deine monatliche Einzahlung:</value>
+  </data>
+  <data name="Meldung10" xml:space="preserve">
+    <value>Die Laufzeit des Kontos:</value>
+  </data>
+  <data name="Meldung11" xml:space="preserve">
+    <value>Der Zinssatz pro Jahr:</value>
+  </data>
+  <data name="Wort01" xml:space="preserve">
+    <value>Monat</value>
+  </data>
+  <data name="Wort02" xml:space="preserve">
+    <value>Kontostand</value>
+  </data>
+  <data name="Wort03" xml:space="preserve">
+    <value>Zinsen</value>
+  </data>
+  <data name="Wort04" xml:space="preserve">
+    <value>Euro</value>
+  </data>
+  <data name="Wort05" xml:space="preserve">
+    <value>Monate</value>
+  </data>
+  <data name="Wort06" xml:space="preserve">
+    <value>Prozent</value>
+  </data>
 </root>

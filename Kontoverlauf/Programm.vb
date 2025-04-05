@@ -13,9 +13,9 @@ Module Programm
 
   Private Startsaldo As Double = 0
   Private Zahlung As Double = 0
-  Private Laufzeit As Integer = 0
+  Private Laufzeit As Double = 0
   Private ZinsPa As Double = 0
-  Private ZinsTurnus As Integer = 0
+  Private ZinsTurnus As Double = 0
   Private KontoVerlauf As New List(Of KontoInfo)
 
   Sub Main()
@@ -23,7 +23,7 @@ Module Programm
     Console.Clear()
     ShowProgrammInfo()
     KontoVerlauf = Calculate()
-    Console.WriteLine($"Hier ist die Berechnung des Kontoverlaufs nach Deinen Angaben:")
+    Console.WriteLine(My.Resources.Meldung01)
     ShowHistory()
   End Sub
 
@@ -69,11 +69,11 @@ Module Programm
   ''' Abfrage des Anfangskapitals
   ''' </summary>
   Private Function GetStartSaldo() As Double
-    Console.WriteLine($"Wie hoch ist Dein Startguthaben?")
+    Console.WriteLine(My.Resources.Frage01)
     Dim input As String = Console.ReadLine
     Dim result As Double
     While Not Double.TryParse(input, result)
-      Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein:")
+      Console.WriteLine(My.Resources.Meldung02)
       input = Console.ReadLine()
     End While
     Return result
@@ -83,11 +83,11 @@ Module Programm
   ''' Abfrage der monatlichen Einzahlung
   ''' </summary>
   Private Function GetZahlung() As Double
-    Console.WriteLine($"Wieviel möchtest Du monatlich investieren?")
+    Console.WriteLine(My.Resources.Frage02)
     Dim input As String = Console.ReadLine
     Dim result As Double
     While Not Double.TryParse(input, result)
-      Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein:")
+      Console.WriteLine(My.Resources.Meldung02)
       input = Console.ReadLine()
     End While
     Return result
@@ -96,12 +96,12 @@ Module Programm
   ''' <summary>
   ''' Abfrage der Laufzeit
   ''' </summary>
-  Private Function GetLaufzeit() As Integer
-    Console.WriteLine($"Für wieviele Monate soll der Kontoverlauf berechnet werden?")
+  Private Function GetLaufzeit() As Double
+    Console.WriteLine(My.Resources.Frage03)
     Dim input As String = Console.ReadLine
-    Dim result As Integer
-    While Not Integer.TryParse(input, result)
-      Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein:")
+    Dim result As Double
+    While Not Double.TryParse(input, result)
+      Console.WriteLine(My.Resources.Meldung02)
       input = Console.ReadLine()
     End While
     Return result
@@ -111,11 +111,11 @@ Module Programm
   ''' Abfrage des Zinssatz
   ''' </summary>
   Private Function GetZinsPa() As Double
-    Console.WriteLine($"Wie hoch ist der jährliche Zinssatz?")
+    Console.WriteLine(My.Resources.Frage04)
     Dim input As String = Console.ReadLine
     Dim result As Double
     While Not Double.TryParse(input, result)
-      Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein:")
+      Console.WriteLine(My.Resources.Meldung02)
       input = Console.ReadLine()
     End While
     Return result
@@ -124,36 +124,15 @@ Module Programm
   ''' <summary>
   ''' Abfrage des Zinsturnus
   ''' </summary>
-  Private Function GetZinsTurnus() As Integer
-    Console.WriteLine($"In welchem Turnus erfolgt die Zinszahlung?")
-    Console.WriteLine($"1 für monatlich,2 für virteljährlich und 3 für jährlich.")
+  Private Function GetZinsTurnus() As Double
+    Console.WriteLine(My.Resources.Frage05)
+    Console.WriteLine(My.Resources.Frage05_Hinweis)
     Dim input As String = Console.ReadLine
-    Dim result As Integer
-    While Not Integer.TryParse(input, result) OrElse (result <> 1 AndAlso result <> 2 AndAlso result <> 3)
-      Console.WriteLine("Ungültige Eingabe. Bitte gib nur 1, 2 oder 3 ein:")
+    Dim result As Double
+    While Not Double.TryParse(input, result) OrElse (result <> 1 AndAlso result <> 2 AndAlso result <> 3)
+      Console.WriteLine(My.Resources.Meldung03)
       input = Console.ReadLine()
     End While
-    Return result
-  End Function
-
-  ''' <summary>
-  ''' Abfrage ob Zinsseszins gezahlt wird
-  ''' </summary>
-  Private Function GetZinsesZins() As Boolean
-    Console.WriteLine($"Wird Zinseszins gezahlt?")
-    Console.WriteLine($"[J]a oder [N]ein.")
-    Dim result As Boolean
-    Dim input As ConsoleKeyInfo
-    Do
-      input = Console.ReadKey(True)
-      If input.Key = ConsoleKey.J Then
-        result = True
-      ElseIf input.Key = ConsoleKey.N Then
-        result = False
-      Else
-        Console.WriteLine("Ungültige Eingabe. Bitte drücke [J] für ja oder [N] für nein.")
-      End If
-    Loop While input.Key <> ConsoleKey.J AndAlso input.Key <> ConsoleKey.N
     Return result
   End Function
 
@@ -162,21 +141,21 @@ Module Programm
   ''' </summary>
   ''' <returns></returns>
   Private Function ShowInputInfo() As Boolean
-    Console.WriteLine($"Zusammenfassung der von Dir eingegebenen Daten:{vbCrLf}")
-    Console.WriteLine($"Dein Anfangskontostand: {Startsaldo} Euro")
-    Console.WriteLine($"Deine monatliche Einzahlung: {Zahlung} Euro")
-    Console.WriteLine($"Die Laufzeit des Kontos: {Laufzeit} Monate")
-    Console.WriteLine($"Der Zinssatz pro Jahr: {ZinsPa} Prozent")
+    Console.WriteLine($"{My.Resources.Meldung04}{vbCrLf}")
+    Console.WriteLine($"{My.Resources.Meldung08} {Startsaldo} {My.Resources.Wort04}")
+    Console.WriteLine($"{My.Resources.Meldung09} {Zahlung} {My.Resources.Wort04}")
+    Console.WriteLine($"{My.Resources.Meldung10} {Laufzeit} {My.Resources.Wort05}")
+    Console.WriteLine($"{My.Resources.Meldung11} {ZinsPa} {My.Resources.Wort06}")
     Select Case ZinsTurnus
       Case 1
-        Console.WriteLine($"Jährliche Zinszahlung.")
+        Console.WriteLine(My.Resources.Meldung05)
       Case 4
-        Console.WriteLine($"Virteljährliche Zinszahlung.")
+        Console.WriteLine(My.Resources.Meldung06)
       Case 12
-        Console.WriteLine($"Monatliche Zinszahlung.")
+        Console.WriteLine(My.Resources.Meldung07)
     End Select
-    Console.WriteLine($"{vbCrLf}Sind Diese Angaben richtig?")
-    Console.WriteLine($"[J]a oder [N]ein.")
+    Console.WriteLine($"{vbCrLf}{My.Resources.Frage06}")
+    Console.WriteLine(My.Resources.Ja_Nein_Hinweis01)
     Dim result As Boolean
     Dim input As ConsoleKeyInfo
     Do
@@ -186,7 +165,7 @@ Module Programm
       ElseIf input.Key = ConsoleKey.N Then
         result = False
       Else
-        Console.WriteLine("Ungültige Eingabe. Bitte drücke [J] für ja oder [N] für nein.")
+        Console.WriteLine(My.Resources.ja_Nein_Hinweis02)
       End If
     Loop While input.Key <> ConsoleKey.J AndAlso input.Key <> ConsoleKey.N
     Return result
@@ -196,9 +175,9 @@ Module Programm
   ''' Zeigt den gesamten Kontoverlauf an
   ''' </summary>
   Private Sub ShowHistory()
-    Console.WriteLine($"Monat{vbTab}Kontostand{vbTab}Zinsen{vbTab}")
+    Console.WriteLine(String.Format("{0,-10}{1,10:F2}{2,15:F2}", My.Resources.Wort01, My.Resources.Wort02, My.Resources.Wort03))
     For Each info As KontoInfo In KontoVerlauf
-      Console.WriteLine($"{info.Monat}{vbTab}{info.Kontostand}{vbTab}{vbTab}{vbTab}{vbTab}{info.Zinsen}")
+      Console.WriteLine(String.Format("{0,-10}{1,10:F2}{2,15:F2}", info.Monat, info.Kontostand, info.Zinsen))
     Next
   End Sub
 
@@ -213,18 +192,18 @@ Module Programm
     Dim Kontostand As Double = Startsaldo
 
     Select Case ZinsTurnus
-      Case 1 'jährliche Zinszahlung
-        Zinsfaktor = ZinsPa / 100
+      Case 1 'monatliche Zinszahlung
+        Zinsfaktor = ZinsPa / (12 * 100)
 
       Case 2 'virteljährliche Zinszahlung
         Zinsfaktor = ZinsPa / (4 * 100)
 
-      Case 3 'monatliche Zinszahlung
-        Zinsfaktor = ZinsPa / (12 * 100)
+      Case 3 'jährliche Zinszahlung
+        Zinsfaktor = ZinsPa / 100
 
     End Select
 
-    For Monat As Integer = 1 To Laufzeit
+    For Monat As Double = 1 To Laufzeit
       Kontostand += Zahlung
       Select Case ZinsTurnus
 
@@ -233,19 +212,11 @@ Module Programm
           Kontostand += Zins
 
         Case 2 'virteljährliche Zinszahlung
-          If Monat Mod 3 = 0 Then 'Monat mit Zinszahlung
-            Zins = Math.Round(Kontostand * Zinsfaktor, 2)
-          Else 'Monat ohne Zinszahlung
-            Zins = 0
-          End If
+          Zins = If(Monat Mod 3 = 0, Math.Round(Kontostand * Zinsfaktor, 2), 0)
           Kontostand += Zins
 
         Case 3 'jährliche Zinszahlung
-          If Monat Mod 12 = 0 Then 'Monat mit Zinszahlung
-            Zins = Math.Round(Kontostand * Zinsfaktor, 2)
-          Else 'Monat ohne Zinszahlung
-            Zins = 0
-          End If
+          Zins = If(Monat Mod 12 = 0, Math.Round(Kontostand * Zinsfaktor, 2), 0)
           Kontostand += Zins
 
       End Select
@@ -258,7 +229,7 @@ Module Programm
   ''' Definiert Kontoinformationen für einen Monat
   ''' </summary>
   Private Structure KontoInfo
-    Public Monat As Integer
+    Public Monat As Double
     Public Kontostand As Double
     Public Zinsen As Double
   End Structure

@@ -59,5 +59,239 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wie hoch ist Dein Startguthaben? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage01() As String
+            Get
+                Return ResourceManager.GetString("Frage01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wieviel möchtest Du monatlich investieren? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage02() As String
+            Get
+                Return ResourceManager.GetString("Frage02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Für wieviele Monate soll der Kontoverlauf berechnet werden? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage03() As String
+            Get
+                Return ResourceManager.GetString("Frage03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wie hoch ist der jährliche Zinssatz? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage04() As String
+            Get
+                Return ResourceManager.GetString("Frage04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die In welchem Turnus erfolgt die Zinszahlung? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage05() As String
+            Get
+                Return ResourceManager.GetString("Frage05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die 1 für monatlich,2 für virteljährlich und 3 für jährlich. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage05_Hinweis() As String
+            Get
+                Return ResourceManager.GetString("Frage05_Hinweis", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sind Diese Angaben richtig? ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Frage06() As String
+            Get
+                Return ResourceManager.GetString("Frage06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die [J]a oder [N]ein. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Ja_Nein_Hinweis01() As String
+            Get
+                Return ResourceManager.GetString("Ja_Nein_Hinweis01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ungültige Eingabe. Bitte drücke [J] für ja oder [N] für nein. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property ja_Nein_Hinweis02() As String
+            Get
+                Return ResourceManager.GetString("ja_Nein_Hinweis02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hier ist die Berechnung des Kontoverlaufs nach Deinen Angaben: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung01() As String
+            Get
+                Return ResourceManager.GetString("Meldung01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ungültige Eingabe. Bitte gib eine Zahl ein: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung02() As String
+            Get
+                Return ResourceManager.GetString("Meldung02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ungültige Eingabe. Bitte gib nur 1, 2 oder 3 ein: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung03() As String
+            Get
+                Return ResourceManager.GetString("Meldung03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Zusammenfassung der von Dir eingegebenen Daten: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung04() As String
+            Get
+                Return ResourceManager.GetString("Meldung04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dein Anfangskontostand: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung05() As String
+            Get
+                Return ResourceManager.GetString("Meldung05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Virteljährliche Zinszahlung. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung06() As String
+            Get
+                Return ResourceManager.GetString("Meldung06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Monatliche Zinszahlung. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung07() As String
+            Get
+                Return ResourceManager.GetString("Meldung07", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dein Anfangskontostand: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung08() As String
+            Get
+                Return ResourceManager.GetString("Meldung08", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Deine monatliche Einzahlung: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung09() As String
+            Get
+                Return ResourceManager.GetString("Meldung09", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Laufzeit des Kontos: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung10() As String
+            Get
+                Return ResourceManager.GetString("Meldung10", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Der Zinssatz pro Jahr: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung11() As String
+            Get
+                Return ResourceManager.GetString("Meldung11", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Monat ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort01() As String
+            Get
+                Return ResourceManager.GetString("Wort01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kontostand ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort02() As String
+            Get
+                Return ResourceManager.GetString("Wort02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Zinsen ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort03() As String
+            Get
+                Return ResourceManager.GetString("Wort03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Euro ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort04() As String
+            Get
+                Return ResourceManager.GetString("Wort04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Monate ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort05() As String
+            Get
+                Return ResourceManager.GetString("Wort05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Prozent ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Wort06() As String
+            Get
+                Return ResourceManager.GetString("Wort06", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

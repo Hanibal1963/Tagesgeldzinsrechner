@@ -21,7 +21,11 @@ Namespace My
         Inherits Global.System.Configuration.ApplicationSettingsBase
         
         Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
-        
+
+    Public Sub New()
+
+    End Sub
+
 #Region "Automatische My.Settings-Speicherfunktion"
 #If _MyType = "WindowsForms" Then
     Private Shared addedHandler As Boolean
@@ -36,10 +40,10 @@ Namespace My
     End Sub
 #End If
 #End Region
-        
-        Public Shared ReadOnly Property [Default]() As MySettings
-            Get
-                
+
+    Public Shared ReadOnly Property [Default]() As MySettings
+      Get
+
 #If _MyType = "WindowsForms" Then
                If Not addedHandler Then
                     SyncLock addedHandlerLockObject
@@ -50,10 +54,14 @@ Namespace My
                     End SyncLock
                 End If
 #End If
-                Return defaultInstance
-            End Get
-        End Property
-    End Class
+        Return defaultInstance
+      End Get
+    End Property
+
+    Protected Overrides Sub Finalize()
+      MyBase.Finalize()
+    End Sub
+  End Class
 End Namespace
 
 Namespace My

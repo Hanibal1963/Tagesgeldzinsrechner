@@ -59,5 +59,70 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Info() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Info", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dieses Tool berechnet den Kontoverlauf eines Tagesgeldkontos nach deinen 
+        '''Eingaben in den entsprechenden Feldern. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText1() As String
+            Get
+                Return ResourceManager.GetString("LabelText1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die StartSaldo: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText2() As String
+            Get
+                Return ResourceManager.GetString("LabelText2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die monatliche Zahlung: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText3() As String
+            Get
+                Return ResourceManager.GetString("LabelText3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die jährlicher Zinssatz: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText4() As String
+            Get
+                Return ResourceManager.GetString("LabelText4", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Laufzeit (Monate): ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText5() As String
+            Get
+                Return ResourceManager.GetString("LabelText5", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Zinszahlung: ähnelt.
+        '''</summary>
+        Friend ReadOnly Property LabelText6() As String
+            Get
+                Return ResourceManager.GetString("LabelText6", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

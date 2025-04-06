@@ -26,7 +26,6 @@ Partial Class FormMain
     Me.TextBoxAnfangssaldo = New System.Windows.Forms.TextBox()
     Me.Label3 = New System.Windows.Forms.Label()
     Me.TextBoxEinzahlung = New System.Windows.Forms.TextBox()
-    Me.Label1 = New System.Windows.Forms.Label()
     Me.Label4 = New System.Windows.Forms.Label()
     Me.Label5 = New System.Windows.Forms.Label()
     Me.TextBoxZinssatz = New System.Windows.Forms.TextBox()
@@ -37,6 +36,7 @@ Partial Class FormMain
     Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
     Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
     Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+    Me.Label1 = New System.Windows.Forms.Label()
     Me.SuspendLayout()
     '
     'Label2
@@ -44,18 +44,17 @@ Partial Class FormMain
     Me.Label2.AutoSize = True
     Me.Label2.Location = New System.Drawing.Point(12, 62)
     Me.Label2.Name = "Label2"
-    Me.Label2.Size = New System.Drawing.Size(59, 13)
-    Me.Label2.TabIndex = 0
-    Me.Label2.Text = "StartSaldo:"
+    Me.Label2.Size = New System.Drawing.Size(39, 13)
+    Me.Label2.TabIndex = 6
+    Me.Label2.Text = "Label2"
     '
     'TextBoxAnfangssaldo
     '
-    Me.TextBoxAnfangssaldo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.TextBoxAnfangssaldo.Location = New System.Drawing.Point(112, 60)
     Me.TextBoxAnfangssaldo.Name = "TextBoxAnfangssaldo"
     Me.TextBoxAnfangssaldo.ScrollBars = System.Windows.Forms.ScrollBars.Both
     Me.TextBoxAnfangssaldo.Size = New System.Drawing.Size(100, 20)
-    Me.TextBoxAnfangssaldo.TabIndex = 1
+    Me.TextBoxAnfangssaldo.TabIndex = 0
     Me.TextBoxAnfangssaldo.WordWrap = False
     '
     'Label3
@@ -63,65 +62,53 @@ Partial Class FormMain
     Me.Label3.AutoSize = True
     Me.Label3.Location = New System.Drawing.Point(229, 62)
     Me.Label3.Name = "Label3"
-    Me.Label3.Size = New System.Drawing.Size(103, 13)
-    Me.Label3.TabIndex = 2
-    Me.Label3.Text = "monatliche Zahlung:"
+    Me.Label3.Size = New System.Drawing.Size(39, 13)
+    Me.Label3.TabIndex = 7
+    Me.Label3.Text = "Label3"
     '
     'TextBoxEinzahlung
     '
-    Me.TextBoxEinzahlung.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.TextBoxEinzahlung.Location = New System.Drawing.Point(338, 60)
     Me.TextBoxEinzahlung.Name = "TextBoxEinzahlung"
     Me.TextBoxEinzahlung.ScrollBars = System.Windows.Forms.ScrollBars.Both
     Me.TextBoxEinzahlung.Size = New System.Drawing.Size(100, 20)
-    Me.TextBoxEinzahlung.TabIndex = 3
+    Me.TextBoxEinzahlung.TabIndex = 1
     Me.TextBoxEinzahlung.WordWrap = False
-    '
-    'Label1
-    '
-    Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.Label1.Location = New System.Drawing.Point(12, 9)
-    Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(426, 43)
-    Me.Label1.TabIndex = 4
-    Me.Label1.Text = "Label1"
     '
     'Label4
     '
     Me.Label4.AutoSize = True
     Me.Label4.Location = New System.Drawing.Point(12, 98)
     Me.Label4.Name = "Label4"
-    Me.Label4.Size = New System.Drawing.Size(94, 13)
-    Me.Label4.TabIndex = 5
-    Me.Label4.Text = "jährlicher Zinssatz:"
+    Me.Label4.Size = New System.Drawing.Size(39, 13)
+    Me.Label4.TabIndex = 8
+    Me.Label4.Text = "Label4"
     '
     'Label5
     '
     Me.Label5.AutoSize = True
     Me.Label5.Location = New System.Drawing.Point(229, 98)
     Me.Label5.Name = "Label5"
-    Me.Label5.Size = New System.Drawing.Size(92, 13)
-    Me.Label5.TabIndex = 6
-    Me.Label5.Text = "Laufzeit (Monate):"
+    Me.Label5.Size = New System.Drawing.Size(39, 13)
+    Me.Label5.TabIndex = 9
+    Me.Label5.Text = "Label5"
     '
     'TextBoxZinssatz
     '
-    Me.TextBoxZinssatz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.TextBoxZinssatz.Location = New System.Drawing.Point(112, 93)
     Me.TextBoxZinssatz.Name = "TextBoxZinssatz"
     Me.TextBoxZinssatz.ScrollBars = System.Windows.Forms.ScrollBars.Both
     Me.TextBoxZinssatz.Size = New System.Drawing.Size(100, 20)
-    Me.TextBoxZinssatz.TabIndex = 7
+    Me.TextBoxZinssatz.TabIndex = 2
     Me.TextBoxZinssatz.WordWrap = False
     '
     'TextBoxLaufzeit
     '
-    Me.TextBoxLaufzeit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.TextBoxLaufzeit.Location = New System.Drawing.Point(338, 96)
     Me.TextBoxLaufzeit.Name = "TextBoxLaufzeit"
     Me.TextBoxLaufzeit.ScrollBars = System.Windows.Forms.ScrollBars.Both
     Me.TextBoxLaufzeit.Size = New System.Drawing.Size(100, 20)
-    Me.TextBoxLaufzeit.TabIndex = 8
+    Me.TextBoxLaufzeit.TabIndex = 3
     Me.TextBoxLaufzeit.WordWrap = False
     '
     'Label6
@@ -129,9 +116,9 @@ Partial Class FormMain
     Me.Label6.AutoSize = True
     Me.Label6.Location = New System.Drawing.Point(12, 130)
     Me.Label6.Name = "Label6"
-    Me.Label6.Size = New System.Drawing.Size(67, 13)
-    Me.Label6.TabIndex = 9
-    Me.Label6.Text = "Zinszahlung:"
+    Me.Label6.Size = New System.Drawing.Size(39, 13)
+    Me.Label6.TabIndex = 10
+    Me.Label6.Text = "Label6"
     '
     'ComboBoxZinszahlung
     '
@@ -140,7 +127,7 @@ Partial Class FormMain
     Me.ComboBoxZinszahlung.Location = New System.Drawing.Point(112, 127)
     Me.ComboBoxZinszahlung.Name = "ComboBoxZinszahlung"
     Me.ComboBoxZinszahlung.Size = New System.Drawing.Size(100, 21)
-    Me.ComboBoxZinszahlung.TabIndex = 10
+    Me.ComboBoxZinszahlung.TabIndex = 4
     '
     'ListViewKontoverlauf
     '
@@ -155,26 +142,45 @@ Partial Class FormMain
     Me.ListViewKontoverlauf.ShowGroups = False
     Me.ListViewKontoverlauf.Size = New System.Drawing.Size(423, 276)
     Me.ListViewKontoverlauf.TabIndex = 11
+    Me.ListViewKontoverlauf.TabStop = False
     Me.ListViewKontoverlauf.UseCompatibleStateImageBehavior = False
     Me.ListViewKontoverlauf.View = System.Windows.Forms.View.Details
     '
     'ColumnHeader1
     '
     Me.ColumnHeader1.Text = "Monat"
+    Me.ColumnHeader1.Width = 50
     '
     'ColumnHeader2
     '
     Me.ColumnHeader2.Text = "Kontostand"
+    Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+    Me.ColumnHeader2.Width = 150
     '
     'ColumnHeader3
     '
     Me.ColumnHeader3.Text = "Zinsen"
+    Me.ColumnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+    Me.ColumnHeader3.Width = 100
+    '
+    'Label1
+    '
+    Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+    Me.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+    Me.Label1.Image = Global.SchlumpfSoft.My.Resources.Resources.Info
+    Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.Label1.Location = New System.Drawing.Point(12, 9)
+    Me.Label1.Name = "Label1"
+    Me.Label1.Size = New System.Drawing.Size(427, 43)
+    Me.Label1.TabIndex = 5
+    Me.Label1.Text = "Label1"
+    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
     'FormMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(453, 441)
+    Me.ClientSize = New System.Drawing.Size(454, 441)
     Me.Controls.Add(Me.ListViewKontoverlauf)
     Me.Controls.Add(Me.ComboBoxZinszahlung)
     Me.Controls.Add(Me.Label6)

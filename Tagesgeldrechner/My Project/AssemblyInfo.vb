@@ -1,6 +1,5 @@
-﻿Imports System.Resources
-Imports System
-Imports System.Reflection
+﻿Imports System.Reflection
+Imports System.Resources
 Imports System.Runtime.InteropServices
 
 ' Allgemeine Informationen über eine Assembly werden über die folgenden
@@ -29,6 +28,6 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("1.2025.0405.2134")>
-<Assembly: AssemblyFileVersion("1.2025.0405.2134")>
+<Assembly: AssemblyVersion("1.2025.0406.2010")>
+<Assembly: AssemblyFileVersion("1.2025.0406.2010")>
 <Assembly: NeutralResourcesLanguage("de-DE")>

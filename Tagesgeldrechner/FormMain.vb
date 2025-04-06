@@ -4,7 +4,8 @@
 ' Copyright (c)2025 by Andreas Sauer 
 '
 ' Kurzbeschreibung:
-' 
+' Tool um den Kontoverlauf eines Tagesgeldkontos zu berechnen.
+'
 ' *************************************************************************************************
 
 Public Class FormMain
@@ -20,38 +21,27 @@ Public Class FormMain
   Private Event PropertyChanged()
 
   Public Sub New()
-    ' Dieser Aufruf ist für den Designer erforderlich.
-    Me.InitializeComponent()
+    Me.InitializeComponent() ' Dieser Aufruf ist für den Designer erforderlich.
     ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-    Me.TextBoxAnfangssaldo.Text = $"0"
-    Me.TextBoxEinzahlung.Text = $"0"
-    Me.TextBoxLaufzeit.Text = $"0"
-    Me.TextBoxZinssatz.Text = $"0"
-    Me.ComboBoxZinszahlung.SelectedIndex = 0
+    Me.InitTitle() ' Titelzeile des Startfensters anpassen
+    Me.InitLabels() 'Texte der Labels initialisieren
+    Me.InitTextBoxes() ' Anfangsinitialisierung der Textboxen
+    Me.InitComboBoxes() ' Anfangsinitialisierung der Combobox
   End Sub
 
   Private Sub TextBox_Text_Changed(sender As Object, e As EventArgs) Handles _
     TextBoxAnfangssaldo.TextChanged, TextBoxZinssatz.TextChanged,
     TextBoxLaufzeit.TextChanged, TextBoxEinzahlung.TextChanged
 
+    ' Prüfen ob überhaupt etwas eingegeben wurde
     Dim TextBoxValue As String = CType(sender, TextBox).Text
     If String.IsNullOrEmpty(TextBoxValue) Then Exit Sub
 
-    'Welche Textbox hat sich geändert?
-    Select Case True
-      Case sender Is Me.TextBoxAnfangssaldo 'Der Anfangssaldo hat sich geändert
-        Me.StartSaldo = CDbl(TextBoxValue)
+    'Eingabe nach Double konvertieren
+    Dim value As Double = CDbl(TextBoxValue)
 
-      Case sender Is Me.TextBoxEinzahlung 'Die monatliche Einzahlung hat sich geändert
-        Me.Zahlung = CDbl(TextBoxValue)
-
-      Case sender Is Me.TextBoxLaufzeit 'Die Laufzeit hat sich geändert
-        Me.Laufzeit = CDbl(TextBoxValue)
-
-      Case sender Is Me.TextBoxZinssatz 'Drer Zinssatz hat sich geändert
-        Me.ZinsPa = CDbl(TextBoxValue)
-
-    End Select
+    ' Variablen mit den Werten füllen
+    Me.SetVariables(sender, value)
 
     'Ereignis auslösen
     RaiseEvent PropertyChanged()
@@ -173,6 +163,57 @@ Public Class FormMain
     Return result
 
   End Function
+
+  Private Sub InitTitle()
+    Dim title As String = My.Application.Info.Title
+    Dim copyright As String = My.Application.Info.Copyright
+    Dim version As String = My.Application.Info.Version.ToString
+    Me.Text = $"{title} Version {version} {copyright}"
+  End Sub
+
+  Private Sub InitLabels()
+    Dim number As Integer
+    Dim labeltext As String
+    For Each control As Control In Me.Controls
+      If TypeOf control Is Label Then
+        number = CInt(Strings.Right(control.Name, 1))
+        labeltext = My.Resources.ResourceManager.GetString($"LabelText{number}")
+        control.Text = labeltext
+      End If
+    Next
+  End Sub
+
+  Private Sub InitTextBoxes()
+    Me.TextBoxAnfangssaldo.Text = $"0"
+    Me.TextBoxEinzahlung.Text = $"0"
+    Me.TextBoxLaufzeit.Text = $"0"
+    Me.TextBoxZinssatz.Text = $"0"
+  End Sub
+
+  Private Sub InitComboBoxes()
+    Me.ComboBoxZinszahlung.SelectedIndex = 0
+  End Sub
+
+  Private Sub SetVariables(sender As Object, value As Double)
+
+    ' Variablen je nach Textbox setzen
+    Select Case True
+
+      'Der Anfangssaldo hat sich geändert
+      Case sender Is Me.TextBoxAnfangssaldo : Me.StartSaldo = value
+
+      'Die monatliche Einzahlung hat sich geändert
+      Case sender Is Me.TextBoxEinzahlung : Me.Zahlung = value
+
+      'Die Laufzeit hat sich geändert
+      Case sender Is Me.TextBoxLaufzeit : Me.Laufzeit = value
+
+      'Der Zinssatz hat sich geändert
+      Case sender Is Me.TextBoxZinssatz : Me.ZinsPa = value
+
+    End Select
+
+  End Sub
 
   ''' <summary>
   ''' Definiert Kontoinformationen für einen Monat

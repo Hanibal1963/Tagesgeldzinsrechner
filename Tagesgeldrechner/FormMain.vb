@@ -10,6 +10,10 @@
 
 Public Class FormMain
 
+  Private Const MONTHS_IN_YEAR As Integer = 12
+  Private Const QUARTERS_IN_YEAR As Integer = 4
+  Private Const PERCENT_DIVISOR As Double = 100
+
   Private KontoVerlauf As New List(Of KontoInfo)
   Private StartSaldo As Double = 0
   Private Zahlung As Double = 0
@@ -89,6 +93,7 @@ Public Class FormMain
 
   End Sub
 
+  <CodeAnalysis.SuppressMessage("Style", "IDE0058:Der Ausdruckswert wird niemals verwendet.", Justification:="<Ausstehend>")>
   Private Sub ShowVerlauf()
 
     'alte Liste löschen
@@ -96,11 +101,11 @@ Public Class FormMain
 
     'neue Liste erzeugen
     For Each KontoInfo As KontoInfo In Me.KontoVerlauf
-      Dim unused = Me.ListViewKontoverlauf.Items.Add(
-        New ListViewItem(
-        {$"{KontoInfo.Monat}",
-        $"{KontoInfo.Kontostand}",
-        $"{KontoInfo.Zinsen}"}))
+      Dim item = New ListViewItem(New String() {
+        KontoInfo.Monat.ToString(),
+        KontoInfo.Kontostand.ToString(),
+        KontoInfo.Zinsen.ToString()})
+      Me.ListViewKontoverlauf.Items.Add(item)
     Next
 
   End Sub
@@ -109,20 +114,33 @@ Public Class FormMain
   ''' Berechnet den Zinswert für den gewählten Zalungsturnus
   ''' </summary>
   Private Sub Calculate_Zinswert()
-
     'Welcher Turnus für die Zinszahlung wurde gewählt?
     Select Case Me.ZinsTurnus
-      Case 0 'monatliche Zinszahlung
-        Me.ZinsFaktor = Me.ZinsPa / (12 * 100)
-
-      Case 1 'vierteljährliche Zinszahlung
-        Me.ZinsFaktor = Me.ZinsPa / (4 * 100)
-
-      Case 2 'jährliche Zinszahlung
-        Me.ZinsFaktor = Me.ZinsPa / 100
-
+      Case 0 : Me.SetMonthlyInterestRate() 'monatliche Zinszahlung
+      Case 1 : Me.SetQuarterlyInterestRate() 'vierteljährliche Zinszahlung
+      Case 2 : Me.SetYearlyInterestRate() 'jährliche Zinszahlung
     End Select
+  End Sub
 
+  ''' <summary>
+  ''' Setzt den jährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  ''' </summary>
+  Private Sub SetYearlyInterestRate()
+    Me.ZinsFaktor = Me.ZinsPa / PERCENT_DIVISOR
+  End Sub
+
+  ''' <summary>
+  ''' Setzt den vierteljährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  ''' </summary>
+  Private Sub SetQuarterlyInterestRate()
+    Me.ZinsFaktor = Me.ZinsPa / (QUARTERS_IN_YEAR * PERCENT_DIVISOR)
+  End Sub
+
+  ''' <summary>
+  ''' Setzt den monatlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  ''' </summary>
+  Private Sub SetMonthlyInterestRate()
+    Me.ZinsFaktor = Me.ZinsPa / (MONTHS_IN_YEAR * PERCENT_DIVISOR)
   End Sub
 
   ''' <summary>
@@ -164,6 +182,9 @@ Public Class FormMain
 
   End Function
 
+  ''' <summary>
+  ''' Initialisiert die Titelzeile des Fensters
+  ''' </summary>
   Private Sub InitTitle()
     Dim title As String = My.Application.Info.Title
     Dim copyright As String = My.Application.Info.Copyright
@@ -171,6 +192,9 @@ Public Class FormMain
     Me.Text = $"{title} Version {version} {copyright}"
   End Sub
 
+  ''' <summary>
+  ''' Initialisiert die Texte der Labels
+  ''' </summary>
   Private Sub InitLabels()
     Dim number As Integer
     Dim labeltext As String
@@ -183,6 +207,9 @@ Public Class FormMain
     Next
   End Sub
 
+  ''' <summary>
+  ''' Initialisiert die Anfangswerte der Textboxen
+  ''' </summary>
   Private Sub InitTextBoxes()
     Me.TextBoxAnfangssaldo.Text = $"0"
     Me.TextBoxEinzahlung.Text = $"0"

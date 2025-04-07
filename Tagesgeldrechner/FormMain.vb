@@ -189,7 +189,7 @@ Public Class FormMain
     Dim title As String = My.Application.Info.Title
     Dim copyright As String = My.Application.Info.Copyright
     Dim version As String = My.Application.Info.Version.ToString
-    Me.Text = $"{title} Version {version} {copyright}"
+    Me.Text = String.Format("{0} Version {1} {2}", title, version, copyright)
   End Sub
 
   ''' <summary>
@@ -221,25 +221,21 @@ Public Class FormMain
     Me.ComboBoxZinszahlung.SelectedIndex = 0
   End Sub
 
+  ''' <summary>
+  ''' Variablen je nach Textbox setzen
+  ''' </summary>
+  ''' <param name="sender"></param>
+  ''' <param name="value"></param>
   Private Sub SetVariables(sender As Object, value As Double)
-
-    ' Variablen je nach Textbox setzen
-    Select Case True
-
-      'Der Anfangssaldo hat sich geändert
-      Case sender Is Me.TextBoxAnfangssaldo : Me.StartSaldo = value
-
-      'Die monatliche Einzahlung hat sich geändert
-      Case sender Is Me.TextBoxEinzahlung : Me.Zahlung = value
-
-      'Die Laufzeit hat sich geändert
-      Case sender Is Me.TextBoxLaufzeit : Me.Laufzeit = value
-
-      'Der Zinssatz hat sich geändert
-      Case sender Is Me.TextBoxZinssatz : Me.ZinsPa = value
-
-    End Select
-
+    If sender Is Me.TextBoxAnfangssaldo Then 'Der Anfangssaldo hat sich geändert
+      Me.StartSaldo = value
+    ElseIf sender Is Me.TextBoxEinzahlung Then 'Die monatliche Einzahlung hat sich geändert
+      Me.Zahlung = value
+    ElseIf sender Is Me.TextBoxLaufzeit Then 'Die Laufzeit hat sich geändert
+      Me.Laufzeit = value
+    ElseIf sender Is Me.TextBoxZinssatz Then 'Der Zinssatz hat sich geändert
+      Me.ZinsPa = value
+    End If
   End Sub
 
   ''' <summary>

@@ -10,27 +10,19 @@
 
 Public Class FormMain
 
-  Private Const MONTHS_IN_YEAR As Integer = 12
-  Private Const QUARTERS_IN_YEAR As Integer = 4
-  Private Const PERCENT_DIVISOR As Double = 100
-
-  Private KontoVerlauf As New List(Of KontoInfo)
-  Private StartSaldo As Double = 0
-  Private Zahlung As Double = 0
-  Private ZinsPa As Double = 0
-  Private Laufzeit As Double = 0
-  Private ZinsFaktor As Double = 0
-  Private ZinsTurnus As Integer = 0
-
   Private Event PropertyChanged()
 
   Public Sub New()
-    Me.InitializeComponent() ' Dieser Aufruf ist für den Designer erforderlich.
+
+    ' Dieser Aufruf ist für den Designer erforderlich.
+    Me.InitializeComponent()
+
     ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
     Me.InitTitle() ' Titelzeile des Startfensters anpassen
     Me.InitLabels() 'Texte der Labels initialisieren
     Me.InitTextBoxes() ' Anfangsinitialisierung der Textboxen
     Me.InitComboBoxes() ' Anfangsinitialisierung der Combobox
+
   End Sub
 
   Private Sub TextBox_Text_Changed(sender As Object, e As EventArgs) Handles _
@@ -38,14 +30,15 @@ Public Class FormMain
     TextBoxLaufzeit.TextChanged, TextBoxEinzahlung.TextChanged
 
     ' Prüfen ob überhaupt etwas eingegeben wurde
-    Dim TextBoxValue As String = CType(sender, TextBox).Text
+    Dim tb As TextBox = CType(sender, TextBox)
+    Dim TextBoxValue As String = tb.Text
     If String.IsNullOrEmpty(TextBoxValue) Then Exit Sub
 
     'Eingabe nach Double konvertieren
     Dim value As Double = CDbl(TextBoxValue)
 
     ' Variablen mit den Werten füllen
-    Me.SetVariables(sender, value)
+    SetVariables(tb, value)
 
     'Ereignis auslösen
     RaiseEvent PropertyChanged()
@@ -72,7 +65,7 @@ Public Class FormMain
     ComboBoxZinszahlung.SelectedIndexChanged
 
     'Index des gewählten Eintrags abfragen und speichern
-    Me.ZinsTurnus = CType(sender, ComboBox).SelectedIndex
+    ZinsTurnus = CType(sender, ComboBox).SelectedIndex
 
     'Ereignis auslösen
     RaiseEvent PropertyChanged()
@@ -83,10 +76,10 @@ Public Class FormMain
     Me.PropertyChanged
 
     'Zinswert für Zinszahlung anpassen 
-    Me.Calculate_Zinswert()
+    Calculate_Zinswert()
 
     'Kontoverlauf berechnen und speichern
-    Me.KontoVerlauf = Me.Calculate_Verlauf()
+    KontoVerlauf = Calculate_Verlauf()
 
     'Kontoverlauf anzeigen
     Me.ShowVerlauf()
@@ -100,7 +93,7 @@ Public Class FormMain
     Me.ListViewKontoverlauf.Items.Clear()
 
     'neue Liste erzeugen
-    For Each KontoInfo As KontoInfo In Me.KontoVerlauf
+    For Each KontoInfo As KontoInfo In KontoVerlauf
       Dim item = New ListViewItem(New String() {
         KontoInfo.Monat.ToString(),
         KontoInfo.Kontostand.ToString(),
@@ -110,77 +103,80 @@ Public Class FormMain
 
   End Sub
 
-  ''' <summary>
-  ''' Berechnet den Zinswert für den gewählten Zalungsturnus
-  ''' </summary>
-  Private Sub Calculate_Zinswert()
-    'Welcher Turnus für die Zinszahlung wurde gewählt?
-    Select Case Me.ZinsTurnus
-      Case 0 : Me.SetMonthlyInterestRate() 'monatliche Zinszahlung
-      Case 1 : Me.SetQuarterlyInterestRate() 'vierteljährliche Zinszahlung
-      Case 2 : Me.SetYearlyInterestRate() 'jährliche Zinszahlung
-    End Select
-  End Sub
 
-  ''' <summary>
-  ''' Setzt den jährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-  ''' </summary>
-  Private Sub SetYearlyInterestRate()
-    Me.ZinsFaktor = Me.ZinsPa / PERCENT_DIVISOR
-  End Sub
+  '''' <summary>
+  '''' Berechnet den Zinswert für den gewählten Zalungsturnus
+  '''' </summary>
+  'Private Sub Calculate_Zinswert()
+  '  'Welcher Turnus für die Zinszahlung wurde gewählt?
+  '  Select Case ZinsTurnus
+  '    Case 0 : Me.SetMonthlyInterestRate() 'monatliche Zinszahlung
+  '    Case 1 : Me.SetQuarterlyInterestRate() 'vierteljährliche Zinszahlung
+  '    Case 2 : Me.SetYearlyInterestRate() 'jährliche Zinszahlung
+  '  End Select
+  'End Sub
 
-  ''' <summary>
-  ''' Setzt den vierteljährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-  ''' </summary>
-  Private Sub SetQuarterlyInterestRate()
-    Me.ZinsFaktor = Me.ZinsPa / (QUARTERS_IN_YEAR * PERCENT_DIVISOR)
-  End Sub
+  '''' <summary>
+  '''' Setzt den jährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  '''' </summary>
+  'Private Sub SetYearlyInterestRate()
+  '  ZinsFaktor = ZinsPa / PERCENT_DIVISOR
+  'End Sub
 
-  ''' <summary>
-  ''' Setzt den monatlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-  ''' </summary>
-  Private Sub SetMonthlyInterestRate()
-    Me.ZinsFaktor = Me.ZinsPa / (MONTHS_IN_YEAR * PERCENT_DIVISOR)
-  End Sub
+  '''' <summary>
+  '''' Setzt den vierteljährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  '''' </summary>
+  'Private Sub SetQuarterlyInterestRate()
+  '  ZinsFaktor = ZinsPa / (QUARTERS_IN_YEAR * PERCENT_DIVISOR)
+  'End Sub
 
-  ''' <summary>
-  ''' Berechnet den Kontoverlauf
-  ''' </summary>
-  Private Function Calculate_Verlauf() As List(Of KontoInfo)
+  '''' <summary>
+  '''' Setzt den monatlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  '''' </summary>
+  'Private Sub SetMonthlyInterestRate()
+  '  ZinsFaktor = ZinsPa / (MONTHS_IN_YEAR * PERCENT_DIVISOR)
+  'End Sub
 
-    Dim result As New List(Of KontoInfo)
-    result.Clear()
 
-    Dim Zins As Double = 0
-    Dim Kontostand As Double = Me.StartSaldo
+  '''' <summary>
+  '''' Berechnet den Kontoverlauf
+  '''' </summary>
+  'Private Function Calculate_Verlauf() As List(Of KontoInfo)
 
-    For Monat As Double = 1 To Me.Laufzeit
+  '  Dim result As New List(Of KontoInfo)
+  '  result.Clear()
 
-      Kontostand += Me.Zahlung
+  '  Dim Zins As Double = 0
+  '  Dim Kontostand As Double = StartSaldo
 
-      Select Case Me.ZinsTurnus
+  '  For Monat As Double = 1 To Laufzeit
 
-        Case 0 'monatliche Zinszahlung
-          Zins = Math.Round(Kontostand * Me.ZinsFaktor, 2)
-          Kontostand += Zins
+  '    Kontostand += Zahlung
 
-        Case 1 'virteljährliche Zinszahlung
-          Zins = If(Monat Mod 3 = 0, Math.Round(Kontostand * Me.ZinsFaktor, 2), 0)
-          Kontostand += Zins
+  '    Select Case ZinsTurnus
 
-        Case 2 'jährliche Zinszahlung
-          Zins = If(Monat Mod 12 = 0, Math.Round(Kontostand * Me.ZinsFaktor, 2), 0)
-          Kontostand += Zins
+  '      Case 0 'monatliche Zinszahlung
+  '        Zins = Math.Round(Kontostand * ZinsFaktor, 2)
+  '        Kontostand += Zins
 
-      End Select
+  '      Case 1 'virteljährliche Zinszahlung
+  '        Zins = If(Monat Mod 3 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
+  '        Kontostand += Zins
 
-      result.Add(New KontoInfo With {.Monat = Monat, .Kontostand = Kontostand, .Zinsen = Zins})
+  '      Case 2 'jährliche Zinszahlung
+  '        Zins = If(Monat Mod 12 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
+  '        Kontostand += Zins
 
-    Next
+  '    End Select
 
-    Return result
+  '    result.Add(New KontoInfo With {.Monat = Monat, .Kontostand = Kontostand, .Zinsen = Zins})
 
-  End Function
+  '  Next
+
+  '  Return result
+
+  'End Function
+
 
   ''' <summary>
   ''' Initialisiert die Titelzeile des Fensters
@@ -221,30 +217,21 @@ Public Class FormMain
     Me.ComboBoxZinszahlung.SelectedIndex = 0
   End Sub
 
-  ''' <summary>
-  ''' Variablen je nach Textbox setzen
-  ''' </summary>
-  ''' <param name="sender"></param>
-  ''' <param name="value"></param>
-  Private Sub SetVariables(sender As Object, value As Double)
-    If sender Is Me.TextBoxAnfangssaldo Then 'Der Anfangssaldo hat sich geändert
-      Me.StartSaldo = value
-    ElseIf sender Is Me.TextBoxEinzahlung Then 'Die monatliche Einzahlung hat sich geändert
-      Me.Zahlung = value
-    ElseIf sender Is Me.TextBoxLaufzeit Then 'Die Laufzeit hat sich geändert
-      Me.Laufzeit = value
-    ElseIf sender Is Me.TextBoxZinssatz Then 'Der Zinssatz hat sich geändert
-      Me.ZinsPa = value
-    End If
-  End Sub
-
-  ''' <summary>
-  ''' Definiert Kontoinformationen für einen Monat
-  ''' </summary>
-  Private Structure KontoInfo
-    Public Monat As Double
-    Public Kontostand As Double
-    Public Zinsen As Double
-  End Structure
+  '''' <summary>
+  '''' Variablen je nach Textbox setzen
+  '''' </summary>
+  '''' <param name="sender"></param>
+  '''' <param name="value"></param>
+  'Private Sub SetVariables(sender As TextBox, value As Double)
+  '  If sender Is Me.TextBoxAnfangssaldo Then 'Der Anfangssaldo hat sich geändert
+  '    StartSaldo = value
+  '  ElseIf sender Is Me.TextBoxEinzahlung Then 'Die monatliche Einzahlung hat sich geändert
+  '    Zahlung = value
+  '  ElseIf sender Is Me.TextBoxLaufzeit Then 'Die Laufzeit hat sich geändert
+  '    Laufzeit = value
+  '  ElseIf sender Is Me.TextBoxZinssatz Then 'Der Zinssatz hat sich geändert
+  '    ZinsPa = value
+  '  End If
+  'End Sub
 
 End Class

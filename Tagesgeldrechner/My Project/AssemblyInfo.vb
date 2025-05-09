@@ -28,6 +28,6 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("1.2025.0406.2010")>
-<Assembly: AssemblyFileVersion("1.2025.0406.2010")>
+<Assembly: AssemblyVersion("1.2025.0509.1450")>
+<Assembly: AssemblyFileVersion("1.2025.0509.1450")>
 <Assembly: NeutralResourcesLanguage("de-DE")>

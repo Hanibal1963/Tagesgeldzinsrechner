@@ -18,7 +18,8 @@ Module InterestValueCalculation
     Select Case ZinsTurnus
       Case 0 : SetMonthlyInterestRate() 'monatliche Zinszahlung
       Case 1 : SetQuarterlyInterestRate() 'vierteljährliche Zinszahlung
-      Case 2 : SetYearlyInterestRate() 'jährliche Zinszahlung
+      Case 2 : SetHalfYearlyInterestRate() 'halbjährliche Zinszahlung
+      Case 3 : SetYearlyInterestRate() 'jährliche Zinszahlung
     End Select
 
   End Sub
@@ -35,6 +36,13 @@ Module InterestValueCalculation
   ''' </summary>
   Private Sub SetQuarterlyInterestRate()
     ZinsFaktor = ((ZinsPa / 360) * 90) / 100
+  End Sub
+
+  ''' <summary>
+  ''' Setzt den halbjährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+  ''' </summary>
+  Private Sub SetHalfYearlyInterestRate()
+    ZinsFaktor = ((ZinsPa / 360) * 180) / 100
   End Sub
 
   ''' <summary>

@@ -34,7 +34,11 @@ Module AccountHistoryCalculation
           Zins = If(Monat Mod 3 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
           Kontostand += Zins
 
-        Case 2 'jährliche Zinszahlung
+        Case 2 'halbjährliche Zinszahlung
+          Zins = If(Monat Mod 6 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
+          Kontostand += Zins
+
+        Case 3 'jährliche Zinszahlung
           Zins = If(Monat Mod 12 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
           Kontostand += Zins
 

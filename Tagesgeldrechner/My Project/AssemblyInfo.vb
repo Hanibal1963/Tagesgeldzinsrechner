@@ -1,4 +1,4 @@
-﻿Imports System.Reflection
+Imports System.Reflection
 Imports System.Resources
 Imports System.Runtime.InteropServices
 
@@ -28,6 +28,8 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("1.2025.0509.1450")>
-<Assembly: AssemblyFileVersion("1.2025.0509.1450")>
+<Assembly: AssemblyVersion("1.2025.0524.4")>
+<Assembly: AssemblyFileVersion("1.2025.0524.4")>
 <Assembly: NeutralResourcesLanguage("de-DE")>
+
+<assembly: AssemblyInformationalVersion("0.2025.0524.4")>

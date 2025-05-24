@@ -22,22 +22,26 @@ Partial Class FormMain
   'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.Label2 = New System.Windows.Forms.Label()
-    Me.TextBoxAnfangssaldo = New System.Windows.Forms.TextBox()
-    Me.Label3 = New System.Windows.Forms.Label()
-    Me.TextBoxEinzahlung = New System.Windows.Forms.TextBox()
-    Me.Label4 = New System.Windows.Forms.Label()
-    Me.Label5 = New System.Windows.Forms.Label()
-    Me.TextBoxZinssatz = New System.Windows.Forms.TextBox()
-    Me.TextBoxLaufzeit = New System.Windows.Forms.TextBox()
-    Me.Label6 = New System.Windows.Forms.Label()
-    Me.ComboBoxZinszahlung = New System.Windows.Forms.ComboBox()
-    Me.ListViewKontoverlauf = New System.Windows.Forms.ListView()
+        Me.components = New System.ComponentModel.Container()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBoxAnfangssaldo = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBoxEinzahlung = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBoxZinssatz = New System.Windows.Forms.TextBox()
+        Me.TextBoxLaufzeit = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ComboBoxZinszahlung = New System.Windows.Forms.ComboBox()
+        Me.ListViewKontoverlauf = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.HelpProvider = New System.Windows.Forms.HelpProvider()
+        Me.ContextMenuStripKontoverlauf = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItemKopieren = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStripKontoverlauf.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label2
@@ -143,6 +147,8 @@ Partial Class FormMain
         'ListViewKontoverlauf
         '
         Me.ListViewKontoverlauf.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3})
+        Me.ListViewKontoverlauf.ContextMenuStrip = Me.ContextMenuStripKontoverlauf
+        Me.ListViewKontoverlauf.FullRowSelect = True
         Me.ListViewKontoverlauf.GridLines = True
         Me.ListViewKontoverlauf.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.ListViewKontoverlauf.HideSelection = False
@@ -187,6 +193,18 @@ Partial Class FormMain
         Me.Label1.Text = "Label1"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'ContextMenuStripKontoverlauf
+        '
+        Me.ContextMenuStripKontoverlauf.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemKopieren})
+        Me.ContextMenuStripKontoverlauf.Name = "ContextMenuStripKontoverlauf"
+        Me.ContextMenuStripKontoverlauf.Size = New System.Drawing.Size(181, 48)
+        '
+        'ToolStripMenuItemKopieren
+        '
+        Me.ToolStripMenuItemKopieren.Name = "ToolStripMenuItemKopieren"
+        Me.ToolStripMenuItemKopieren.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItemKopieren.Text = "kopieren"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -211,24 +229,27 @@ Partial Class FormMain
         Me.Name = "FormMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
+        Me.ContextMenuStripKontoverlauf.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Private WithEvents Label2 As Label
-  Private WithEvents TextBoxAnfangssaldo As TextBox
-  Private WithEvents Label3 As Label
-  Private WithEvents TextBoxEinzahlung As TextBox
-  Private WithEvents Label1 As Label
-  Private WithEvents Label4 As Label
-  Private WithEvents Label5 As Label
-  Private WithEvents TextBoxZinssatz As TextBox
-  Private WithEvents TextBoxLaufzeit As TextBox
-  Private WithEvents Label6 As Label
-  Private WithEvents ComboBoxZinszahlung As ComboBox
-  Private WithEvents ListViewKontoverlauf As ListView
-  Private WithEvents ColumnHeader1 As ColumnHeader
-  Private WithEvents ColumnHeader2 As ColumnHeader
-  Private WithEvents ColumnHeader3 As ColumnHeader
+    Private WithEvents TextBoxAnfangssaldo As TextBox
+    Private WithEvents Label3 As Label
+    Private WithEvents TextBoxEinzahlung As TextBox
+    Private WithEvents Label1 As Label
+    Private WithEvents Label4 As Label
+    Private WithEvents Label5 As Label
+    Private WithEvents TextBoxZinssatz As TextBox
+    Private WithEvents TextBoxLaufzeit As TextBox
+    Private WithEvents Label6 As Label
+    Private WithEvents ComboBoxZinszahlung As ComboBox
+    Private WithEvents ListViewKontoverlauf As ListView
+    Private WithEvents ColumnHeader1 As ColumnHeader
+    Private WithEvents ColumnHeader2 As ColumnHeader
+    Private WithEvents ColumnHeader3 As ColumnHeader
     Private WithEvents HelpProvider As HelpProvider
+    Private WithEvents ContextMenuStripKontoverlauf As ContextMenuStrip
+    Private WithEvents ToolStripMenuItemKopieren As ToolStripMenuItem
 End Class

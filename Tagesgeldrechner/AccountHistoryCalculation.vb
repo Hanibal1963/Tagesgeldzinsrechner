@@ -31,19 +31,19 @@ Module AccountHistoryCalculation
             Kontostand += Zahlung
             ' Je nach ZinsTurnus wird die Zinsgutschrift unterschiedlich berechnet
             Select Case ZinsTurnus
-                Case 0 ' monatliche Zinszahlung
+                Case ZinsIntervall.Monatlich
                     ' Zinsen werden jeden Monat berechnet und gutgeschrieben
                     Zins = Math.Round(Kontostand * ZinsFaktor, 2)
                     Kontostand += Zins
-                Case 1 ' vierteljährliche Zinszahlung
+                Case ZinsIntervall.Vierteljaehrlich
                     ' Zinsen werden nur alle 3 Monate berechnet und gutgeschrieben
                     Zins = If(Monat Mod 3 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
                     Kontostand += Zins
-                Case 2 ' halbjährliche Zinszahlung
+                Case ZinsIntervall.Halbjaehrlich
                     ' Zinsen werden nur alle 6 Monate berechnet und gutgeschrieben
                     Zins = If(Monat Mod 6 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
                     Kontostand += Zins
-                Case 3 ' jährliche Zinszahlung
+                Case ZinsIntervall.Jaehrlich
                     ' Zinsen werden nur alle 12 Monate berechnet und gutgeschrieben
                     Zins = If(Monat Mod 12 = 0, Math.Round(Kontostand * ZinsFaktor, 2), 0)
                     Kontostand += Zins

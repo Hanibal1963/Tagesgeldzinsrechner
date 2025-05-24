@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="AccountHistoryCalculation.vb" />
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="EnumDefinitions.vb" />
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>

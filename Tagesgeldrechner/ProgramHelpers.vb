@@ -1,16 +1,51 @@
 ﻿' *************************************************************************************************
 ' 
-' AccountHistoryCalculation.vb
+' ProgramHelpers.vb
 ' Copyright (c)2025 by Andreas Sauer 
 '
 ' Kurzbeschreibung:
-' Berechnet den Verlauf eines Tagesgeldkontos über eine bestimmte Laufzeit unter Berücksichtigung
-' von regelmäßigen Einzahlungen und verschiedenen Zinszahlungsintervallen.
-' 
+'
+' Hilfsmodul mit Methoden zur Variablenzuweisung anhand von TextBox-Eingaben,
+' Methoden zur Berechnung des Zinsfaktors für verschiedene Zinszahlungs-Turni (monatlich, vierteljährlich, halbjährlich, jährlich)
+' und Methoden um den Verlauf eines Tagesgeldkontos über eine bestimmte Laufzeit unter Berücksichtigung
+' von regelmäßigen Einzahlungen und verschiedenen Zinszahlungsintervallen zu berechnen.
+'
 ' *************************************************************************************************
 
-Module AccountHistoryCalculation
+Module ProgramHelpers
 
+    ''' <summary>
+    ''' Setzt globale Variablen abhängig davon, welche TextBox geändert wurde.
+    ''' </summary>
+    ''' <param name="sender">Die TextBox, deren Wert geändert wurde.</param>
+    ''' <param name="value">Der neue Wert, der gesetzt werden soll.</param>
+    Friend Sub SetVariables(sender As TextBox, value As Double)
+        ' Überprüft, welche TextBox den Wert geändert hat und weist den Wert der entsprechenden Variable zu.
+        Select Case sender.Name
+            Case $"TextBoxAnfangssaldo" ' Der Anfangssaldo wurde geändert
+                StartSaldo = value      ' Setzt den Startsaldo
+            Case $"TextBoxEinzahlung"   ' Die monatliche Einzahlung wurde geändert
+                Zahlung = value         ' Setzt die monatliche Einzahlung
+            Case $"TextBoxLaufzeit"     ' Die Laufzeit wurde geändert
+                Laufzeit = value        ' Setzt die Laufzeit
+            Case $"TextBoxZinssatz"     ' Der Zinssatz wurde geändert
+                ZinsPa = value          ' Setzt den Zinssatz pro Jahr
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' Berechnet den Zinswert für den gewählten Zalungsturnus.
+    ''' </summary>
+    Friend Sub Calculate_Zinswert()
+        ' Welcher Turnus für die Zinszahlung wurde gewählt?
+        ' 0 = monatlich, 1 = vierteljährlich, 2 = halbjährlich, 3 = jährlich
+        Select Case ZinsTurnus
+            Case 0 : SetMonthlyInterestRate()      ' monatliche Zinszahlung
+            Case 1 : SetQuarterlyInterestRate()    ' vierteljährliche Zinszahlung
+            Case 2 : SetHalfYearlyInterestRate()   ' halbjährliche Zinszahlung
+            Case 3 : SetYearlyInterestRate()       ' jährliche Zinszahlung
+        End Select
+    End Sub
     ''' <summary>
     ''' Berechnet den Kontoverlauf für ein Tagesgeldkonto.
     ''' Für jeden Monat der Laufzeit wird der aktuelle Kontostand und die erhaltenen Zinsen berechnet.
@@ -46,6 +81,38 @@ Module AccountHistoryCalculation
         Return result
     End Function
 
+    ''' <summary>
+    ''' Setzt den jährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = 0,02
+    ''' </summary>
+    Private Sub SetYearlyInterestRate()
+        ' ZinsFaktor entspricht dem jährlichen Zinssatz in Dezimalform
+        ZinsFaktor = ZinsPa / 100
+    End Sub
+
+    ''' <summary>
+    ''' Setzt den vierteljährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = 2 / 360 * 90 / 100 = 0,005
+    ''' </summary>
+    Private Sub SetQuarterlyInterestRate()
+        ZinsFaktor = ZinsPa / 360 * 90 / 100 ' ZinsFaktor entspricht dem Zinssatz für 90 Tage (ein Quartal)
+    End Sub
+
+    ''' <summary>
+    ''' Setzt den halbjährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = 2 / 360 * 180 / 100 = 0,01
+    ''' </summary>
+    Private Sub SetHalfYearlyInterestRate()
+        ZinsFaktor = ZinsPa / 360 * 180 / 100 ' ZinsFaktor entspricht dem Zinssatz für 180 Tage (ein halbes Jahr)
+    End Sub
+
+    ''' <summary>
+    ''' Setzt den monatlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = ZinsPa / 360 * 30 / 100 = 0,001666...
+    ''' </summary>
+    Private Sub SetMonthlyInterestRate()
+        ZinsFaktor = ZinsPa / 360 * 30 / 100 ' ZinsFaktor entspricht dem Zinssatz für 30 Tage (ein Monat)
+    End Sub
     ''' <summary>
     ''' Berechnet die Zinsen und aktualisiert den Kontostand für das jährliche Zinsintervall.
     ''' Wenn der Monat ein Vielfaches von 12 ist, werden die Zinsen berechnet und dem Kontostand hinzugefügt. 

@@ -102,9 +102,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountHistoryCalculation.vb" />
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="EnumDefinitions.vb" />
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -112,8 +110,7 @@
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helpers.vb" />
-    <Compile Include="InterestValueCalculation.vb" />
+    <Compile Include="ProgramHelpers.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -126,8 +123,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Settings.vb" />
-    <Compile Include="StructureDefinitions.vb" />
-    <Compile Include="VariableDefinitions.vb" />
+    <Compile Include="Definitions.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resx">

@@ -35,29 +35,29 @@ Module InterestValueCalculation
 
     ''' <summary>
     ''' Setzt den vierteljährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-    ''' Beispiel: 2% p.a. -> ZinsFaktor = ((2 / 360) * 90) / 100 = 0,005
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = 2 / 360 * 90 / 100 = 0,005
     ''' </summary>
     Private Sub SetQuarterlyInterestRate()
         ' ZinsFaktor entspricht dem Zinssatz für 90 Tage (ein Quartal)
-        ZinsFaktor = ((ZinsPa / 360) * 90) / 100
+        ZinsFaktor = ZinsPa / 360 * 90 / 100
     End Sub
 
     ''' <summary>
     ''' Setzt den halbjährlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-    ''' Beispiel: 2% p.a. -> ZinsFaktor = ((2 / 360) * 180) / 100 = 0,01
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = 2 / 360 * 180 / 100 = 0,01
     ''' </summary>
     Private Sub SetHalfYearlyInterestRate()
         ' ZinsFaktor entspricht dem Zinssatz für 180 Tage (ein halbes Jahr)
-        ZinsFaktor = ((ZinsPa / 360) * 180) / 100
+        ZinsFaktor = ZinsPa / 360 * 180 / 100
     End Sub
 
     ''' <summary>
     ''' Setzt den monatlichen Zinssatzfaktor basierend auf dem angegebenen Zinssatz.
-    ''' Beispiel: 2% p.a. -> ZinsFaktor = ((2 / 360) * 30) / 100 = 0,001666...
+    ''' Beispiel: 2% p.a. -> ZinsFaktor = ZinsPa / 360 * 30 / 100 = 0,001666...
     ''' </summary>
     Private Sub SetMonthlyInterestRate()
         ' ZinsFaktor entspricht dem Zinssatz für 30 Tage (ein Monat)
-        ZinsFaktor = ((ZinsPa / 360) * 30) / 100
+        ZinsFaktor = ZinsPa / 360 * 30 / 100
     End Sub
 
 End Module

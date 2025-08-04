@@ -39,7 +39,7 @@ Namespace My.Resources
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("SchlumpfSoft.Resources", GetType(Resources).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("SchlumpfSoft.DailyInterestCalculator.Resources", GetType(Resources).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -61,67 +61,22 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        '''</summary>
+        Friend ReadOnly Property Icon() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Icon", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property Info() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Info", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Dieses Tool berechnet den Kontoverlauf eines Tagesgeldkontos nach deinen 
-        '''Eingaben in den entsprechenden Feldern. ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText1() As String
-            Get
-                Return ResourceManager.GetString("LabelText1", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die StartSaldo: ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText2() As String
-            Get
-                Return ResourceManager.GetString("LabelText2", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die monatliche Zahlung: ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText3() As String
-            Get
-                Return ResourceManager.GetString("LabelText3", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die jährlicher Zinssatz: ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText4() As String
-            Get
-                Return ResourceManager.GetString("LabelText4", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Laufzeit (Monate): ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText5() As String
-            Get
-                Return ResourceManager.GetString("LabelText5", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Zinszahlung: ähnelt.
-        '''</summary>
-        Friend ReadOnly Property LabelText6() As String
-            Get
-                Return ResourceManager.GetString("LabelText6", resourceCulture)
             End Get
         End Property
     End Module

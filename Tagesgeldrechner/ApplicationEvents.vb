@@ -20,8 +20,7 @@ Namespace My
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub MyApplication_NetworkAvailabilityChanged(sender As Object, e As NetworkAvailableEventArgs) Handles _
-            Me.NetworkAvailabilityChanged
+        Private Sub MyApplication_NetworkAvailabilityChanged(sender As Object, e As NetworkAvailableEventArgs) Handles Me.NetworkAvailabilityChanged
 
         End Sub
 
@@ -31,8 +30,7 @@ Namespace My
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
         ''' <remarks>Dieses Ereignis wird nicht ausgelöst, wenn die Anwendung mit einem Fehler beendet wird.</remarks>
-        Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles _
-            Me.Shutdown
+        Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
 
         End Sub
 
@@ -41,8 +39,7 @@ Namespace My
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles _
-            Me.Startup
+        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
 
         End Sub
 
@@ -51,14 +48,13 @@ Namespace My
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub MyApplication_StartupNextInstance(sender As Object, e As StartupNextInstanceEventArgs) Handles _
-            Me.StartupNextInstance
+        Private Sub MyApplication_StartupNextInstance(sender As Object, e As StartupNextInstanceEventArgs) Handles Me.StartupNextInstance
 
-            Dim unused = MessageBox.Show(
-                $"Es läuft bereits eine Instanz dieser Anwendung!",
-                Application.Info.ProductName,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information)
+            Dim caption As String = Application.Info.ProductName
+            Dim buttons As MessageBoxButtons = MessageBoxButtons.OK
+            Dim icon As MessageBoxIcon = MessageBoxIcon.Information
+            Dim text As String = My.Resources.StartupNextInstanceString
+            Dim unused = MessageBox.Show(text, caption, buttons, icon)
 
         End Sub
 
@@ -67,8 +63,7 @@ Namespace My
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles _
-            Me.UnhandledException
+        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
 
         End Sub
 

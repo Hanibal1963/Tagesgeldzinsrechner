@@ -8,8 +8,6 @@
 '
 ' *************************************************************************************************
 
-Imports SchlumpfSoft.DailyInterestCalculator.GlobalVariables
-
 Public Class FormMain
 
     Private Event PropertyChanged()
@@ -22,16 +20,16 @@ Public Class FormMain
     Public Sub New()
 
         ' Dieser Aufruf ist für den Designer erforderlich
-        InitializeComponent()
+        Me.InitializeComponent()
 
         ' Titelzeile des Startfensters anpassen
         Dim title As String = My.Application.Info.Title
         Dim copyright As String = My.Application.Info.Copyright
         Dim version As String = My.Application.Info.Version.ToString
-        Text = String.Format("{0} Version {1} {2}", title, version, copyright)
+        Me.Text = String.Format("{0} Version {1} {2}", title, version, copyright)
 
         ' Anfangsinitialisierung der Combobox und sicherstellen das auch Werte vorhanden sind
-        If ComboBoxZinszahlung.Items.Count > 0 Then ComboBoxZinszahlung.SelectedIndex = 0
+        If Me.ComboBoxZinszahlung.Items.Count > 0 Then Me.ComboBoxZinszahlung.SelectedIndex = 0
 
     End Sub
 
@@ -52,7 +50,7 @@ Public Class FormMain
         If Not Double.TryParse(tb.Text, value) Then Exit Sub
 
         ' Variablen mit den Werten füllen
-        SetVariables(tb, value)
+        Me.SetVariables(tb, value)
 
         ' Ereignis auslösen
         RaiseEvent PropertyChanged()
@@ -92,13 +90,13 @@ Public Class FormMain
         Me.PropertyChanged
 
         'Zinswert für Zinszahlung anpassen
-        Calculate_Zinswert()
+        Me.Calculate_Zinswert()
 
         'Kontoverlauf berechnen und speichern
-        KontoVerlauf = Calculate_Verlauf()
+        Me.KontoVerlauf = Me.Calculate_Verlauf()
 
         'Kontoverlauf anzeigen
-        ShowVerlauf()
+        Me.ShowVerlauf()
 
     End Sub
 
@@ -130,19 +128,19 @@ Public Class FormMain
 
                 ' Zinsen werden jeden Monat berechnet und gutgeschrieben
                 Case ZinsInterval.Monatlich
-                    CalculateMonthly(Zins, Kontostand)
+                    Me.CalculateMonthly(Zins, Kontostand)
 
                 ' Zinsen werden nur alle 3 Monate berechnet und gutgeschrieben
                 Case ZinsInterval.Vierteljaehrlich
-                    CalculateQuarterly(Zins, Kontostand, Monat)
+                    Me.CalculateQuarterly(Zins, Kontostand, Monat)
 
                 ' Zinsen werden nur alle 6 Monate berechnet und gutgeschrieben
                 Case ZinsInterval.Halbjaehrlich
-                    CalculateHalfYearly(Zins, Kontostand, Monat)
+                    Me.CalculateHalfYearly(Zins, Kontostand, Monat)
 
                 ' Zinsen werden nur alle 12 Monate berechnet und gutgeschrieben
                 Case ZinsInterval.Jaehrlich
-                    CalculateYearly(Zins, Kontostand, Monat)
+                    Me.CalculateYearly(Zins, Kontostand, Monat)
 
             End Select
 
@@ -222,19 +220,19 @@ Public Class FormMain
 
             ' monatliche Zinszahlung
             Case 0
-                SetMonthlyInterestRate()
+                Me.SetMonthlyInterestRate()
 
             ' vierteljährliche Zinszahlung
             Case 1
-                SetQuarterlyInterestRate()
+                Me.SetQuarterlyInterestRate()
 
             ' halbjährliche Zinszahlung
             Case 2
-                SetHalfYearlyInterestRate()
+                Me.SetHalfYearlyInterestRate()
 
             ' jährliche Zinszahlung
             Case 3
-                SetYearlyInterestRate()
+                Me.SetYearlyInterestRate()
 
         End Select
 
@@ -243,10 +241,10 @@ Public Class FormMain
     Private Sub ShowVerlauf()
 
         ' alte Liste löschen
-        ListView_Kontoverlauf.Items.Clear()
+        Me.ListView_Kontoverlauf.Items.Clear()
 
         'neue Liste erzeugen
-        For Each KontoInfo As KontoInfo In KontoVerlauf
+        For Each KontoInfo As KontoInfo In Me.KontoVerlauf
 
             ' Eintrag für Monat erzeugen
             Dim item = New ListViewItem(
@@ -256,7 +254,7 @@ Public Class FormMain
                 KontoInfo.Zinsen.ToString()})
 
             ' erzeugten Eintrag hinzufügen
-            Dim unused = ListView_Kontoverlauf.Items.Add(item)
+            Dim unused = Me.ListView_Kontoverlauf.Items.Add(item)
 
         Next
 
@@ -273,19 +271,19 @@ Public Class FormMain
         Select Case True
 
             ' Der Anfangssaldo wurde geändert -> Setzt den Startsaldo
-            Case sender Is TextBox_Anfangssaldo
+            Case sender Is Me.TextBox_Anfangssaldo
                 StartSaldo = value
 
             ' Die monatliche Einzahlung wurde geändert -> Setzt die monatliche Einzahlung
-            Case sender Is TextBox_Einzahlung
+            Case sender Is Me.TextBox_Einzahlung
                 Zahlung = value
 
             ' Die Laufzeit wurde geändert -> Setzt die Laufzeit
-            Case sender Is TextBox_Laufzeit
+            Case sender Is Me.TextBox_Laufzeit
                 Laufzeit = value
 
             ' Der Zinssatz wurde geändert -> Setzt den Zinssatz pro Jahr
-            Case sender Is TextBox_Zinssatz
+            Case sender Is Me.TextBox_Zinssatz
                 ZinsPa = value
 
         End Select
@@ -346,9 +344,9 @@ Public Class FormMain
         ToolStripMenuItemKopieren.Click
 
         ' sicherstellen das auch wirklich ein Eintrag ausgewählt ist
-        If ListView_Kontoverlauf.FocusedItem Is Nothing Then Exit Sub
+        If Me.ListView_Kontoverlauf.FocusedItem Is Nothing Then Exit Sub
 
-        Dim copyvalue As String = ListView_Kontoverlauf.FocusedItem.SubItems.Item(1).Text
+        Dim copyvalue As String = Me.ListView_Kontoverlauf.FocusedItem.SubItems.Item(1).Text
         Clipboard.SetText(copyvalue)
         Dim unused = MessageBox.Show(
             $"Der Kontostand {copyvalue} wurde in die Zwischenablage kopiert.",

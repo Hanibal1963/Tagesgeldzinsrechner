@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTrademark("SchlumpfSoft")>
 <Assembly: ComVisible(False)>
 <Assembly: Guid("a3bbc338-a925-4aaf-877d-1abf541e7902")>
-<Assembly: AssemblyVersion("1.2026.0329.0")>
-<Assembly: AssemblyFileVersion("1.2026.0329.0")>
+<Assembly: AssemblyVersion("1.2026.0329.1455")>
+<Assembly: AssemblyFileVersion("1.2026.0329.1455")>
 <Assembly: NeutralResourcesLanguage("de-DE")>
 <Assembly: AssemblyInformationalVersion("0.2025.0525.1")>

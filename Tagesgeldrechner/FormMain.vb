@@ -33,11 +33,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub TextBox_Text_Changed(sender As Object, e As EventArgs) Handles _
-        TextBox_Anfangssaldo.TextChanged,
-        TextBox_Zinssatz.TextChanged,
-        TextBox_Laufzeit.TextChanged,
-        TextBox_Einzahlung.TextChanged
+    Private Sub TextBox_Text_Changed(sender As Object, e As EventArgs) Handles TextBox_Anfangssaldo.TextChanged, TextBox_Zinssatz.TextChanged, TextBox_Laufzeit.TextChanged, TextBox_Einzahlung.TextChanged
 
         ' Welche Textbox wurde geändert
         Dim tb As TextBox = CType(sender, TextBox)
@@ -57,11 +53,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub TextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles _
-        TextBox_Zinssatz.KeyPress,
-        TextBox_Laufzeit.KeyPress,
-        TextBox_Einzahlung.KeyPress,
-        TextBox_Anfangssaldo.KeyPress
+    Private Sub TextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox_Zinssatz.KeyPress, TextBox_Laufzeit.KeyPress, TextBox_Einzahlung.KeyPress, TextBox_Anfangssaldo.KeyPress
 
         ' Überprüfen, ob die gedrückte Taste eine Zahl, ein Steuerzeichen oder ein Komma ist
         If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> ","c Then
@@ -75,8 +67,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub ComboBox_SelectedIndex_Changed(sender As Object, e As EventArgs) Handles _
-        ComboBoxZinszahlung.SelectedIndexChanged
+    Private Sub ComboBox_SelectedIndex_Changed(sender As Object, e As EventArgs) Handles ComboBoxZinszahlung.SelectedIndexChanged
 
         'Index des gewählten Eintrags abfragen und speichern
         ZinsTurnus = CType(sender, ComboBox).SelectedIndex
@@ -86,8 +77,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub FormMain_PropertyChanged() Handles _
-        Me.PropertyChanged
+    Private Sub FormMain_PropertyChanged() Handles Me.PropertyChanged
 
         'Zinswert für Zinszahlung anpassen
         Me.Calculate_Zinswert()
@@ -340,19 +330,14 @@ Public Class FormMain
     ''' <remarks></remarks>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripMenuItemKopieren_Click(sender As Object, e As EventArgs) Handles _
-        ToolStripMenuItemKopieren.Click
+    Private Sub ToolStripMenuItemKopieren_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemKopieren.Click
 
         ' sicherstellen das auch wirklich ein Eintrag ausgewählt ist
         If Me.ListView_Kontoverlauf.FocusedItem Is Nothing Then Exit Sub
 
         Dim copyvalue As String = Me.ListView_Kontoverlauf.FocusedItem.SubItems.Item(1).Text
         Clipboard.SetText(copyvalue)
-        Dim unused = MessageBox.Show(
-            $"Der Kontostand {copyvalue} wurde in die Zwischenablage kopiert.",
-            "Kopieren",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information)
+        Dim unused = MessageBox.Show($"Der Kontostand {copyvalue} wurde in die Zwischenablage kopiert.", "Kopieren", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
 

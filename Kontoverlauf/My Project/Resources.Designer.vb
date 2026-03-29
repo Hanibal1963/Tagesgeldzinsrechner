@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -237,6 +237,15 @@ Namespace My.Resources
         Friend ReadOnly Property Meldung11() As String
             Get
                 Return ResourceManager.GetString("Meldung11", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Zum beenden bitte beliebigeTaste drücken. ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Meldung12() As String
+            Get
+                Return ResourceManager.GetString("Meldung12", resourceCulture)
             End Get
         End Property
         

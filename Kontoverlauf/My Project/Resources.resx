@@ -177,6 +177,9 @@
   <data name="Meldung11" xml:space="preserve">
     <value>Der Zinssatz pro Jahr:</value>
   </data>
+  <data name="Meldung12" xml:space="preserve">
+    <value>Zum beenden bitte beliebigeTaste drücken.</value>
+  </data>
   <data name="Wort01" xml:space="preserve">
     <value>Monat</value>
   </data>
